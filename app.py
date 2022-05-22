@@ -32,10 +32,8 @@ class Pessoas(BaseModel):
 
 
 @server.get('/pessoas')
-@spec.validate(
-    query = QueryPessoa,
-    resp=Response(HTTP_200=Pessoas))
-def pegar_pessoas():
+@spec.validate(query = QueryPessoa, resp=Response(HTTP_200=Pessoas))
+def pegar_pessoa():
     """Retorna todas as pessoas da base de dados. informando quantidade e os dados """
     query = request.context.query.dict(exclude_none=True)
     allguys = database.search(Query().fragment(query))
